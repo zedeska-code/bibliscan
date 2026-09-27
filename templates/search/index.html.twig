@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<form class="m-auto h-dvh flex items-center justify-center">
+{{form_start(form)}}
+
+<div class="p-2 flex items-center gap-2">
+{{form_label(form.isbn)}}
+<div class="rounded-2xl bg-purple-50 border-2 border-purple-600 p-2">{{form_widget(form.isbn)}}</div>
+{{form_errors(form.isbn)}}
+</div>
+
+<div class="rounded-2xl border p-2">
+{{form_widget(form.submit)}}
+</div>
+
+{{form_end(form)}}
+</form>
+
+{% endblock %}

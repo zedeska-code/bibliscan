@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table>
+    <thead>
+<tr>
+<td>Titre</td>
+<td>Auteur</td>
+<td>Genre</td>
+<td>Statut</td>
+</tr>
+    </thead>
+    <tbody>
+{% for b in books %}
+<tr><td>{{b.title}}</td>
+<td>{{b.author}}</td>
+<td>{{b.genre}}</td>
+<td>{{b.status}}</td></tr>
+{% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

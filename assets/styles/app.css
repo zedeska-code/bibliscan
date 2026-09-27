@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+    --white: #defeeb;
+    --black: #110307;
+    --background: #ecb3b2;
+    --accent: #32dc87;
+}
+
+@theme inline {
+    --color-white: var(--white);
+    --color-black: var(--black);
+    --color-bg: var(--background);
+    --color-accent: var(--accent);
+}
+
+body {
+    font-family: sans-serif;
+}
