@@ -21,6 +21,7 @@
         "symfony/json-path": "8.1.*",
         "symfony/runtime": "8.1.*",
         "symfony/twig-bundle": "8.1.*",
+        "symfony/validator": "8.1.*",
         "symfony/yaml": "8.1.*",
         "symfonycasts/tailwind-bundle": "^1.0",
         "twig/extra-bundle": "^2.12|^3.0",

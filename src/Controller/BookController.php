@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookType;
 use App\Service\BookService;
+use Doctrine\ORM\EntityManagerInterface;
+use Dom\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class BookController extends AbstractController
 {
     private BookService $book_service;
+
 
     public function __construct(BookService $bookService)
     {
@@ -29,16 +32,8 @@ final class BookController extends AbstractController
         ]);
     }
 
-    ##[Route('/{isbn}', name: 'details')]
-    #public function details($isbn): Response
-    #{
-    #    return $this->render('book/index.html.twig', [
-    #        'controller_name' => 'BookController',
-    #    ]);
-    #}
-
     #[Route('/new/{isbn?}', 'new')]
-    public function new(Request $request, ?int $isbn): Response
+    public function new(EntityManagerInterface $entityManager, Request $request, ?int $isbn): Response
     {
         $data = $this->book_service->ISBNFetch($isbn);
 
@@ -57,6 +52,16 @@ final class BookController extends AbstractController
         $book->setPublicationDate($publishDate);
 
         $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $book = $form->getData();
+
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Livre ajouté');
+            return $this->redirectToRoute('book_index');
+        }
 
         return $this->render(
             'book/new.html.twig',
@@ -65,13 +70,23 @@ final class BookController extends AbstractController
             ]
         );
     }
+    #[Route('/book/{isbn}', 'details')]
+    public function update(EntityManagerInterface $entityManager, Request $request, int $isbn): Response
+    {
+        $book = $this->book_service->findBookByIsbn($isbn);
+
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $book = $form->getData();
+
+
+        }
+
+
+        return $this->render('book/index.html.twig', [
+            'book' => $book,
+            'form' => $form,
+        ]);
+    }
 }
-
-
-// $form->handleRequest($request);
-// if ($form->isSubmitted() && $form->isValid()) {
-//     $data = $form->getData();
-//     $isbn = $data['isbn'];
-//     $results = $this->search_service->ISBNFetch($isbn);
-//     $book = $results['docs'];
-//     $cover = "https://covers.openlibrary.org/b/isbn/$isbn-M.jpg";

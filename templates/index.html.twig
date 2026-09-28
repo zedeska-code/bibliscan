@@ -5,21 +5,46 @@
 <table>
     <thead>
 <tr>
-<td>Titre</td>
-<td>Auteur</td>
-<td>Genre</td>
-<td>Statut</td>
+    <th>Couverture</th>
+    <th>Titre</th>
+    <th>Auteur</td>
+    <th>Genre</td>
+    <th>Statut</td>
 </tr>
     </thead>
     <tbody>
 {% for b in books %}
-<tr><td>{{b.title}}</td>
-<td>{{b.author}}</td>
-<td>{{b.genre}}</td>
-<td>{{b.status}}</td></tr>
+<tr class="border hover:bg-purple-300">
+    <td>
+        <a href="{{ path('book_details', { isbn: b.isbn} ) }}">
+            <img src={{b.coverUrl}} alt={{b.title}}>
+        </a>
+    </td>
+    <td>
+        <a href="{{ path('book_details', { isbn: b.isbn} ) }}">
+            {{b.title}}
+        </a>
+    </td>
+    <td>
+        <a href="{{ path('book_details', { isbn: b.isbn} ) }}">
+            {{b.author}}
+        </a>
+    </td>
+    <td>
+        <a href="{{ path('book_details', { isbn: b.isbn} ) }}">
+            {{b.genre}}
+        </a>
+    </td>
+    <td>
+        <a href="{{ path('book_details', { isbn: b.isbn} ) }}">
+            {{b.status}}
+        </a>
+    </td>
+</tr>
 {% endfor %}
     </tbody>
 </table>
 
+<a href={{ path('book_search')}} class="p-4 m-4 border">Ajouter un livre</a>
 
 {% endblock %}

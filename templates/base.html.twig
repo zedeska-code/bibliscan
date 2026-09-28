@@ -19,6 +19,22 @@
         {% endif %}
     </head>
     <body class="bg-white">
-        {% block body %}{% endblock %}
+
+    <header>
+    <nav>
+        <ul class="flex items-center justify-start gap-2">
+        <li><a href={{ path('book_index')}}><img src={{asset('/images/home-alt.svg')}} alt="accueil"></a></li>
+        <li><a href={{ path('book_search')}}><img src={{asset('/images/search.svg')}} alt="recherche"></a></li>
+        </ul>
+    </nav>
+    </header>
+
+        {% block body %}
+{% for message in app.flashes('success') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+        {% endblock %}
     </body>
 </html>

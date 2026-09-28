@@ -28,11 +28,11 @@ class BookType extends AbstractType
                     'Romance'             => 'romance',
                     'Fantasy'             => 'fantasy',
                     'Science-fiction'     => 'science-fiction',
-                    'Policier / Thriller' => 'policier / Thriller',
+                    'Policier/Thriller'   => 'policier/thriller',
                     'Historique'          => 'historique',
                     'Littérature'         => 'littérature',
                     'Jeunesse'            => 'jeunesse',
-                    'BD / Manga'          => 'bd / Manga',
+                    'BD/Manga'            => 'bd/manga',
                     'Biographie'          => 'biographie',
                     'Essai'               => 'essai',
                     'Autre'               => 'autre',
@@ -45,7 +45,20 @@ class BookType extends AbstractType
                     'Lu'                  => 'lu',
                 ],
             ])
-            ->add('rating', IntegerType::class)
+            ->add(
+                'rating',
+                ChoiceType::class,
+                [
+                    'choices'
+                    => [
+                        '1'  => 1,
+                        '2'  => 2,
+                        '3'  => 3,
+                        '4'  => 4,
+                        '5'  => 5,
+                    ],
+                ]
+            )
             ->add('submit', SubmitType::class)
         ;
     }

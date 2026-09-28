@@ -1,20 +1,116 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<section>
+<article>
+<h2>{{book.title}}</h2>
+<h3>{{book.author}}</h3>
+</article>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/shared/httpd/bibliscan/src/Controller/BookController.php</code></li>
-        <li>Your template at <code>/shared/httpd/bibliscan/templates/book/index.html.twig</code></li>
-    </ul>
-</div>
+<article>
+    <img src={{book.coverUrl}} alt={{book.title}}>
+</article>
+
+<article>
+<table>
+        <tr>
+            <th>
+                Éditeur
+            </th>
+            <td>
+                {{book.publisher}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Date de publication
+            </th>
+            <td>
+                {{book.publicationDate | date('d-m-Y')}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                ISBN
+            </th>
+            <td>
+                {{book.isbn}}
+            </td>
+        </tr>
+        {{form_start(form)}}
+        <tr>
+            <th>
+                Genre
+            </th>
+            <td>
+            {{form_widget(form.genre)}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Satut
+            </th>
+            <td>
+            {{form_widget(form.status)}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Note
+            </th>
+            <td>
+                {{form_widget(form.rating)}}
+            </td>
+        </tr>
+   </tr>
+</table>
+
+    <div class="m-auto p-2 border w-fit">
+        {{ form_row(form.submit, {label: 'Enregistrer les modifications'}) }}
+    </div>
+
+{{form_row(form.title, {
+    disabled: true,
+    attr:{hidden: 'true'},
+    label_attr:{hidden: 'true'}
+    })
+}}
+{{form_row(form.isbn, {
+    disabled: true,
+    attr:{hidden: 'true'},
+    label_attr:{hidden: 'true'}
+    })
+}}
+{{form_row(form.author, {
+    disabled: true,
+    attr:{hidden: 'true'},
+    label_attr:{hidden: 'true'}
+    })
+}}
+{{form_row(form.coverUrl, {
+    disabled: true,
+    attr:{hidden: 'true'},
+    label_attr:{hidden: 'true'}
+    })
+}}
+{{form_row(form.publisher, {
+    disabled: true,
+    attr:{hidden: 'true'},
+    label_attr:{hidden: 'true'}
+    })
+}}
+{{form_row(form.publicationDate, {
+    disabled: true,
+    attr:{hidden: 'true'},
+    label_attr:{hidden: 'true'}
+    })
+}}
+
+{{form_rest(form)}}
+{{form_end(form)}}
+</article>
+</section>
+
 {% endblock %}

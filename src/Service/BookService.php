@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Book;
 use App\Repository\BookRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -45,5 +46,10 @@ final class BookService
     public function coverFetch(int $isbn)
     {
         return "https://covers.openlibrary.org/b/isbn/$isbn-M.jpg";
+    }
+    public function findBookByIsbn(int $isbn): Book
+    {
+        $book = $this->book_repository->findOneBy(['isbn' => $isbn]);
+        return $book;
     }
 }
