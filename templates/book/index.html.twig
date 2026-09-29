@@ -71,38 +71,33 @@
         {{ form_row(form.submit, {label: 'Enregistrer les modifications'}) }}
     </div>
 
+
 {{form_row(form.title, {
-    disabled: true,
     attr:{hidden: 'true'},
     label_attr:{hidden: 'true'}
     })
 }}
 {{form_row(form.isbn, {
-    disabled: true,
     attr:{hidden: 'true'},
     label_attr:{hidden: 'true'}
     })
 }}
 {{form_row(form.author, {
-    disabled: true,
     attr:{hidden: 'true'},
     label_attr:{hidden: 'true'}
     })
 }}
 {{form_row(form.coverUrl, {
-    disabled: true,
     attr:{hidden: 'true'},
     label_attr:{hidden: 'true'}
     })
 }}
 {{form_row(form.publisher, {
-    disabled: true,
     attr:{hidden: 'true'},
     label_attr:{hidden: 'true'}
     })
 }}
 {{form_row(form.publicationDate, {
-    disabled: true,
     attr:{hidden: 'true'},
     label_attr:{hidden: 'true'}
     })
@@ -110,6 +105,16 @@
 
 {{form_rest(form)}}
 {{form_end(form)}}
+
+    <form
+        method="post"
+        action="{{ path('book_delete', {isbn: book.isbn})}}"
+        onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');"
+        class="m-auto p-2 border w-fit text-shadow-red-700 border-red-700">
+
+        <input type="hidden" name="_token" value=" {{ csrf_token('delete' ~ book.isbn) }}">
+        <button type="submit">Supprimer</button>
+    </form>
 </article>
 </section>
 

@@ -6,7 +6,6 @@ use App\Entity\Book;
 use App\Form\BookType;
 use App\Service\BookService;
 use Doctrine\ORM\EntityManagerInterface;
-use Dom\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +31,7 @@ final class BookController extends AbstractController
         ]);
     }
 
-    #[Route('/new/{isbn?}', 'new')]
+    #[Route('/new/{isbn?}', 'new', methods: ['GET'])]
     public function new(EntityManagerInterface $entityManager, Request $request, ?int $isbn): Response
     {
         $data = $this->book_service->ISBNFetch($isbn);
@@ -51,7 +50,9 @@ final class BookController extends AbstractController
         $book->setPublisher($publisher);
         $book->setPublicationDate($publishDate);
 
-        $form = $this->createForm(BookType::class, $book);
+        $form = $this->createForm(BookType::class, $book, [
+            'method' => 'GET',
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $book = $form->getData();
@@ -70,7 +71,7 @@ final class BookController extends AbstractController
             ]
         );
     }
-    #[Route('/book/{isbn}', 'details')]
+    #[Route('/book/{isbn}', 'details', methods: ['GET', 'POST'])]
     public function update(EntityManagerInterface $entityManager, Request $request, int $isbn): Response
     {
         $book = $this->book_service->findBookByIsbn($isbn);
@@ -80,13 +81,33 @@ final class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $book = $form->getData();
 
+            $entityManager->persist($book);
+            $entityManager->flush();
 
+            $this->addFlash('success', 'Informations modifiées');
+            return $this->redirectToRoute('book_details', [
+                'isbn' => $book->getIsbn(),
+            ]);
         }
-
-
         return $this->render('book/index.html.twig', [
             'book' => $book,
             'form' => $form,
         ]);
+    }
+    #[Route('/book/{isbn}/delete', 'delete', methods: ['POST'])]
+    public function delete(EntityManagerInterface $entityManager, Request $request, int $isbn): Response
+    {
+        $book = $this->book_service->findBookByIsbn($isbn);
+        $token = $request->request->get('_token');
+
+        if ($this->isCsrfTokenValid('delete' . $book->getIsbn(), $token)) {
+            $entityManager->remove($book);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Livre supprimé avec succès.');
+        } else {
+            $this->addFlash('success', 'Jeton CSRF invalide, suppression annulée');
+        }
+        return $this->redirectToRoute('book_index');
     }
 }

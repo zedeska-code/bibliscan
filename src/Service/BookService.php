@@ -45,7 +45,7 @@ final class BookService
 
     public function coverFetch(int $isbn)
     {
-        return "https://covers.openlibrary.org/b/isbn/$isbn-M.jpg";
+        return "https://covers.openlibrary.org/b/isbn/$isbn-S.jpg";
     }
     public function findBookByIsbn(int $isbn): Book
     {

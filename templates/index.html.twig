@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<section class="flex flex-col">
 
 <table>
     <thead>
@@ -45,6 +46,7 @@
     </tbody>
 </table>
 
-<a href={{ path('book_search')}} class="p-4 m-4 border">Ajouter un livre</a>
+<a href={{ path('book_search')}} class="p-4 m-4 border w-fit">Ajouter un livre</a>
 
+</section>
 {% endblock %}
