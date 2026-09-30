@@ -19,10 +19,15 @@ final class BookService
 
     public function getAllBooks(): array
     {
-        $book = $this->book_repository->findAll();
-        return $book;
+        $books = $this->book_repository->findAll();
+        return $books;
     }
 
+    public function getBooksByTitleOrAuthor(?string $titleQuery, ?string $authorQuery)
+    {
+        $books = $this->book_repository->findByTitleOrAuthor($titleQuery, $authorQuery);
+        return $books;
+    }
     public function ISBNFetch(int $isbn): array
     {
         $response = $this->http_client->request(

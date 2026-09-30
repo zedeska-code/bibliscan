@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
@@ -15,21 +16,32 @@ class Book
     private ?int $id = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\Type('integer')]
     private ?int $isbn = null;
 
     #[ORM\Column(length: 60)]
+    #[Assert\NotBlank]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $title = null;
 
     #[ORM\Column(length: 45, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $author = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $coverUrl = null;
 
     #[ORM\Column(length: 45, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $publisher = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\Type(\DateTime::class)]
     private ?\DateTime $publicationDate = null;
 
     #[ORM\Column(length: 45, nullable: true)]

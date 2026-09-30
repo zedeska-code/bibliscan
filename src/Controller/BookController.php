@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Form\BookType;
+use App\Form\FilterType;
 use App\Service\BookService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,12 +23,27 @@ final class BookController extends AbstractController
         $this->book_service = $bookService;
     }
 
-    #[Route('/', name: 'index')]
-    public function list(): Response
+    #[Route('/', name: 'index', methods: ['POST', 'GET'])]
+    public function list(Request $request): Response
     {
         $books = $this->book_service->getAllBooks();
+
+        $form = $this->createForm(
+            FilterType::class,
+            null,
+        );
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $titleQuery = trim($data['title']);
+            $authorQuery = trim($data['author']);
+
+            $books = $this->book_service->getBooksByTitleOrAuthor($titleQuery, $authorQuery);
+        }
         return $this->render('index.html.twig', [
             'books' => $books,
+            'form' => $form,
         ]);
     }
 

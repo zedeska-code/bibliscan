@@ -17,27 +17,64 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isbn', IntegerType::class)
-            ->add('title', TextType::class)
-            ->add('author', TextType::class)
-            ->add('coverUrl', TextType::class)
-            ->add('publisher', TextType::class)
-            ->add('publicationDate', DateType::class)
-            ->add('genre', ChoiceType::class, [
-                'choices' => [
-                    'Romance'             => 'romance',
-                    'Fantasy'             => 'fantasy',
-                    'Science-fiction'     => 'science-fiction',
-                    'Policier/Thriller'   => 'policier/thriller',
-                    'Historique'          => 'historique',
-                    'Littérature'         => 'littérature',
-                    'Jeunesse'            => 'jeunesse',
-                    'BD/Manga'            => 'bd/manga',
-                    'Biographie'          => 'biographie',
-                    'Essai'               => 'essai',
-                    'Autre'               => 'autre',
-                ],
-            ])
+            ->add(
+                'isbn',
+                IntegerType::class,
+                [
+                    'label' => 'ISBN',
+                ]
+            )
+            ->add(
+                'title',
+                TextType::class,
+                [
+                    'label' => 'Titre',
+                ]
+            )
+            ->add(
+                'author',
+                TextType::class,
+                [
+                    'label' => 'Auteur.ice.s']
+            )
+            ->add(
+                'coverUrl',
+                TextType::class,
+                [
+                    'label' => 'Couverture']
+            )
+            ->add(
+                'publisher',
+                TextType::class,
+                [
+                    'label' => 'Éditeur']
+            )
+            ->add(
+                'publicationDate',
+                DateType::class,
+                [
+                    'label' => 'Date de publication']
+            )
+            ->add(
+                'genre',
+                ChoiceType::class,
+                [
+                    'label' => 'Genre',
+                    'choices' => [
+                        'Romance'             => 'romance',
+                        'Fantasy'             => 'fantasy',
+                        'Science-fiction'     => 'science-fiction',
+                        'Policier/Thriller'   => 'policier/thriller',
+                        'Historique'          => 'historique',
+                        'Littérature'         => 'littérature',
+                        'Jeunesse'            => 'jeunesse',
+                        'BD/Manga'            => 'bd/manga',
+                        'Biographie'          => 'biographie',
+                        'Essai'               => 'essai',
+                        'Autre'               => 'autre',
+                    ],
+                ]
+            )
             ->add('status', ChoiceType::class, [
                 'choices' => [
                     'À lire'              => 'à lire',
@@ -59,8 +96,13 @@ class BookType extends AbstractType
                     ],
                 ]
             )
-            ->add('submit', SubmitType::class)
-        ;
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
+                    'label' => 'Enregistrer',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

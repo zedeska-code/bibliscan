@@ -3,6 +3,15 @@
 {% block body %}
 <section class="flex flex-col">
 
+<article>
+    {{form_start(form)}}
+    {{form_row(form.title)}}
+    {{form_row(form.author)}}
+    {{form_widget(form.submit)}}
+    {{form_end(form)}}
+</article>
+
+<article>
 <table>
     <thead>
 <tr>
@@ -44,7 +53,7 @@
 </tr>
 {% endfor %}
     </tbody>
-</table>
+</table></article>
 
 <a href={{ path('book_search')}} class="p-4 m-4 border w-fit">Ajouter un livre</a>
 
