@@ -1,98 +1,23 @@
 @import "tailwindcss";
+
 :root {
-    --white: #f7fcf8;
-    --black: #030807;
-    --site-background: #caf7d0;
-    --background: #f7e6ca;
-    --primary: #cadbf7;
-    --accent: #f7caf1;
-    --outline: #230905;
-}
-
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-Thin.otf);
-    font-weight: 100;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-ThinItalic.otf);
-    font-weight: 100;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-ExtraLight.otf);
-    font-weight: 200;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-ExtraLightItalic.otf);
-    font-weight: 200;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-Light.otf);
-    font-weight: 300;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-LightItalic.otf);
-    font-weight: 300;
-    font-style: italic;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-Regular.otf);
-    font-weight: 400;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-Medium.otf);
-    font-weight: 500;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-MediumItalic.otf);
-    font-weight: 500;
-    font-style: italic;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-SemiBold.otf);
-    font-weight: 600;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-SemiBoldItalic.otf);
-    font-weight: 600;
-    font-style: italic;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-Bold.otf);
-    font-weight: 700;
-}
-@font-face {
-    font-family: poppins;
-    src: url(../fonts/Poppins/Poppins-BoldItalic.otf);
-    font-weight: 700;
-    font-style: italic;
+    --white: #defeeb;
+    --black: #110307;
+    --background: #ecb3b2;
+    --accent: #32dc87;
 }
 
 @theme inline {
     --color-white: var(--white);
     --color-black: var(--black);
     --color-bg: var(--background);
-    --color-primary: var(--primary);
     --color-accent: var(--accent);
-    --color-outline: var(--outline);
 }
 
 body {
-    background: var(--site-background);
-    font-family: poppins;
+    font-family: sans-serif;
+}
+
+td {
+    padding: 2rem;
 }

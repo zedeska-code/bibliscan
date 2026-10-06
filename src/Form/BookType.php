@@ -61,25 +61,25 @@ class BookType extends AbstractType
                 [
                     'label' => 'Genre',
                     'choices' => [
-                        'Romance'             => 'Romance',
-                        'Fantasy'             => 'Fantasy',
-                        'Science-fiction'     => 'Science-Fiction',
-                        'Policier/Thriller'   => 'Policier/Thriller',
-                        'Historique'          => 'Historique',
-                        'Littérature'         => 'Littérature',
-                        'Jeunesse'            => 'Jeunesse',
-                        'BD/Manga'            => 'Bd/Manga',
-                        'Biographie'          => 'Biographie',
-                        'Essai'               => 'Essai',
-                        'Autre'               => 'Autre',
+                        'Romance'             => 'romance',
+                        'Fantasy'             => 'fantasy',
+                        'Science-fiction'     => 'science-fiction',
+                        'Policier/Thriller'   => 'policier/thriller',
+                        'Historique'          => 'historique',
+                        'Littérature'         => 'littérature',
+                        'Jeunesse'            => 'jeunesse',
+                        'BD/Manga'            => 'bd/manga',
+                        'Biographie'          => 'biographie',
+                        'Essai'               => 'essai',
+                        'Autre'               => 'autre',
                     ],
                 ]
             )
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'À lire'              => 'À lire',
-                    'En cours de lecture' => 'En cours',
-                    'Lu'                  => 'Lu',
+                    'À lire'              => 'à lire',
+                    'En cours de lecture' => 'en cours',
+                    'Lu'                  => 'lu',
                 ],
             ])
             ->add(
