@@ -3,20 +3,20 @@
 
 {% block body %}
 
-<section>
-<article>
-<h2>{{book.title}}</h2>
-<h3>{{book.author}}</h3>
+<section class="bg-primary rounded-2xl shadow-2xl flex flex-col items-center justify-center">
+<article class="text-center">
+<h2 class="text-5xl font-bold">{{book.title}}</h2>
+<h3 class="text-3xl font-light italic">{{book.author}}</h3>
 </article>
 
-<article>
+<article class="flex items-center justify-center shadow-2xl">
     <img src={{book.coverUrl}} alt={{book.title}}>
 </article>
 
 <article>
 <table>
         <tr>
-            <th>
+            <th class="font-bold">
                 Éditeur
             </th>
             <td>
@@ -24,7 +24,7 @@
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="font-bold">
                 Date de publication
             </th>
             <td>
@@ -32,16 +32,15 @@
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="font-bold">
                 ISBN
             </th>
             <td>
                 {{book.isbn}}
             </td>
         </tr>
-        {{form_start(form)}}
-        <tr>
-            <th>
+        {{form_start(form)}} <tr>
+            <th class="font-bold rounded-full bg-accent">
                 Genre
             </th>
             <td>
@@ -49,7 +48,7 @@
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="font-bold rounded-full bg-accent">
                 Satut
             </th>
             <td>
@@ -57,7 +56,7 @@
             </td>
         </tr>
         <tr>
-            <th>
+            <th class="font-bold rounded-full bg-accent">
                 Note
             </th>
             <td>
