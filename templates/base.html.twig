@@ -5,7 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
-        <link rel="stylesheets" href={{asset('styles/app.css')}}>
+        <link rel="stylesheet" href={{asset('/styles/app.css')}}>
         {% endblock %}
 
         {% block javascripts %}
@@ -22,12 +22,41 @@
     <body>
 
     <header>
-    <nav>
-        <ul class="flex items-center justify-start gap-2">
-        <li><a href={{ path('book_index')}}><img src={{asset('/images/home-alt.svg')}} alt="accueil"></a></li>
-        <li><a href={{ path('book_search')}}><img src={{asset('/images/plus.svg')}} alt="recherche"></a></li>
-        </ul>
-    </nav>
+        <nav id="navbar" class="hidden lg:inline">
+            <ul class="flex items-center justify-start gap-2">
+                <li>
+                    <a href={{ path('book_index')}}>
+                        <img src={{asset('/images/home-alt.svg')}} alt="accueil">
+                    </a>
+                </li>
+                <li>
+                    <a href={{ path('book_search')}}>
+                        <img src={{asset('/images/plus.svg')}} alt="recherche">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav id="burger" class="lg:hidden">
+            <img class="burger-button h-60" src={{asset('/images/menu.svg')}} alt="menu" >
+            <ul class="burger-list hidden lg:hidden>
+                <li>
+                    <a href={{ path('book_index')}}>
+                        <img src={{asset('/images/home-alt.svg')}} alt="accueil">
+                    </a>
+                    <span>
+                        Accueil
+                    </span>
+                </li>
+                <li>
+                    <a href={{ path('book_search')}}>
+                        <img src={{asset('/images/plus.svg')}} alt="recherche">
+                    </a>
+                    <span>
+                        Ajouter un livre
+                    </span>
+                </li>
+            </ul>
+        </nav>
     </header>
 
         {% block body %}
