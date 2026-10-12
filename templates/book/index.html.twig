@@ -3,118 +3,127 @@
 
 {% block body %}
 
-<section class="bg-primary rounded-2xl shadow-2xl flex flex-col items-center justify-center">
-<article class="text-center">
-<h2 class="text-5xl font-bold">{{book.title}}</h2>
-<h3 class="text-3xl font-light italic">{{book.author}}</h3>
-</article>
+        <section class="fixed flex items-end justify-end bottom-1.5 text-4xl z-20 text-blk h-dvh w-dvw">
+    <img src="{{asset('images/long-arrow-down-left.svg')}}" alt="retour" />
+        </section>
 
-<article class="flex items-center justify-center shadow-2xl">
-    <img src={{book.coverUrl}} alt={{book.title}}>
-</article>
+<section class=" m-10 flex flex-col gap-28 items-center h-dvh rounded-2xl lg:bg-primary lg:shadow-2xl">
 
-<article>
-<table>
-        <tr>
-            <th class="font-bold">
-                Éditeur
-            </th>
-            <td>
-                {{book.publisher}}
-            </td>
-        </tr>
-        <tr>
-            <th class="font-bold">
-                Date de publication
-            </th>
-            <td>
-                {{book.publicationDate | date('d-m-Y')}}
-            </td>
-        </tr>
-        <tr>
-            <th class="font-bold">
-                ISBN
-            </th>
-            <td>
-                {{book.isbn}}
-            </td>
-        </tr>
-        {{form_start(form)}} <tr>
-            <th class="font-bold rounded-full bg-accent">
-                Genre
-            </th>
-            <td>
-            {{form_widget(form.genre)}}
-            </td>
-        </tr>
-        <tr>
-            <th class="font-bold rounded-full bg-accent">
-                Satut
-            </th>
-            <td>
-            {{form_widget(form.status)}}
-            </td>
-        </tr>
-        <tr>
-            <th class="font-bold rounded-full bg-accent">
-                Note
-            </th>
-            <td>
-                {{form_widget(form.rating)}}
-            </td>
-        </tr>
-   </tr>
-</table>
+    <article class="shadow-2xl rounded-2xl overflow-clip">
+        <img class="h-[33dvh]" src={{book.coverUrl}} alt={{book.title}}>
+    </article>
 
-    <div class="m-auto p-2 border w-fit">
-        {{ form_row(form.submit, {label: 'Enregistrer les modifications'}) }}
-    </div>
+    <article class="flex flex-col p-10 text-center max-lg:shadow-2xl max-lg:bg-primary rounded-2xl">
+
+        <div>
+            <h2 class="m-3 text-6xl font-bold">
+                {{book.title}}
+            </h2>
+            <h3 class="text-4xl font-light italic">
+                {{book.author}}
+            </h3>
+        </div>
+
+        <table class="details m-4 p-4 flex items-center justify-center text-3xl w-fit">
+                <tr>
+                    <th class="font-bold">
+                        Éditeur
+                    </th>
+                    <td>
+                        {{book.publisher}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="font-bold">
+                        Publié le
+                    </th>
+                    <td>
+                        {{book.publicationDate | date('d-m-Y')}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="font-bold">
+                        ISBN
+                    </th>
+                    <td>
+                        {{book.isbn}}
+                    </td>
+                </tr>
+                {{form_start(form)}} <tr>
+                    <th class="font-bold">
+                        Genre
+                    </th>
+                    <td>
+                    <div class="rounded-full bg-accent p-2 text-center">{{form_widget(form.genre)}}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="font-bold">
+                        Satut
+                    </th>
+                    <td>
+                    <div class="rounded-full bg-accent px-4 py-2 text-center">{{form_widget(form.status)}}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="font-bold">
+                        Note
+                    </th>
+                    <td>
+                        <div class="rounded-full bg-accent w-fit px-4 py-2 text-center">{{form_widget(form.rating)}} / 5</div>
+                    </td>
+                </tr>
+           </tr>
+        </table>
+
+            <div class="flex flex-col items-center gap-1"><div class="m-2 p-4 w-fit rounded-full bg-bg text-blk text-4xl">
+                {{ form_row(form.submit, {label: 'Enregistrer'}) }}
+            </div>
 
 
-{{form_row(form.title, {
-    attr:{hidden: 'true'},
-    label_attr:{hidden: 'true'}
-    })
-}}
-{{form_row(form.isbn, {
-    attr:{hidden: 'true'},
-    label_attr:{hidden: 'true'}
-    })
-}}
-{{form_row(form.author, {
-    attr:{hidden: 'true'},
-    label_attr:{hidden: 'true'}
-    })
-}}
-{{form_row(form.coverUrl, {
-    attr:{hidden: 'true'},
-    label_attr:{hidden: 'true'}
-    })
-}}
-{{form_row(form.publisher, {
-    attr:{hidden: 'true'},
-    label_attr:{hidden: 'true'}
-    })
-}}
-{{form_row(form.publicationDate, {
-    attr:{hidden: 'true'},
-    label_attr:{hidden: 'true'}
-    })
-}}
+        {{form_row(form.title, {
+            attr:{hidden: 'true'},
+            label_attr:{hidden: 'true'}
+            })
+        }}
+        {{form_row(form.isbn, {
+            attr:{hidden: 'true'},
+            label_attr:{hidden: 'true'}
+            })
+        }}
+        {{form_row(form.author, {
+            attr:{hidden: 'true'},
+            label_attr:{hidden: 'true'}
+            })
+        }}
+        {{form_row(form.coverUrl, {
+            attr:{hidden: 'true'},
+            label_attr:{hidden: 'true'}
+            })
+        }}
+        {{form_row(form.publisher, {
+            attr:{hidden: 'true'},
+            label_attr:{hidden: 'true'}
+            })
+        }}
+        {{form_row(form.publicationDate, {
+            attr:{hidden: 'true'},
+            label_attr:{hidden: 'true'}
+            })
+        }}
 
-{{form_rest(form)}}
-{{form_end(form)}}
+        {{form_rest(form)}}
+        {{form_end(form)}}
 
-    <form
-        method="post"
-        action="{{ path('book_delete', {isbn: book.isbn})}}"
-        onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');"
-        class="m-auto p-2 border w-fit text-shadow-red-700 border-red-700">
+            <form
+                method="post"
+                action="{{ path('book_delete', {isbn: book.isbn})}}"
+                onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');"
+                >
 
-        <input type="hidden" name="_token" value=" {{ csrf_token('delete' ~ book.isbn) }}">
-        <button type="submit">Supprimer</button>
-    </form>
-</article>
+                <input type="hidden" name="_token" value=" {{ csrf_token('delete' ~ book.isbn) }}">
+                <button type="submit" class="m-2 p-4 w-fit text-white bg-red-400 rounded-full text-center text-4xl">Supprimer</button>
+            </form></div>
+        </article>
 </section>
-
 {% endblock %}

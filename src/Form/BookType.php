@@ -77,9 +77,10 @@ class BookType extends AbstractType
             )
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'À lire'              => 'À lire',
-                    'En cours de lecture' => 'En cours',
-                    'Lu'                  => 'Lu',
+                    'À lire'    => 'À lire',
+                    'En cours'  => 'En cours',
+                    'Lu'        => 'Lu',
+                    'Abandonné' => 'Abandonné',
                 ],
             ])
             ->add(

@@ -4,7 +4,7 @@
     --black: #030807;
     --site-background: #caf7d0;
     --background: #f7e6ca;
-    --primary: #cadbf7;
+    --primary: #b2c7eb;
     --accent: #f7caf1;
     --outline: #230905;
 }
@@ -84,8 +84,8 @@
 }
 
 @theme inline {
-    --color-white: var(--white);
-    --color-black: var(--black);
+    --color-wh: var(--white);
+    --color-blk: var(--black);
     --color-bg: var(--background);
     --color-primary: var(--primary);
     --color-accent: var(--accent);
@@ -95,4 +95,12 @@
 body {
     background: var(--site-background);
     font-family: poppins;
+}
+
+.details tr {
+    text-align: left;
+}
+
+.details td {
+    padding: 2rem;
 }
