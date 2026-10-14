@@ -3,15 +3,16 @@
 
 {% block body %}
 
-        <section class="fixed flex items-end justify-end bottom-25 right-5 text-4xl z-20 text-blk h-dvh w-dvw ">
-            <a href={{path('book_index')}}>
-                <img src={{asset('/images/long-arrow-down-left.svg')}} alt="retour" class="bg-primary rounded-full h-[130px] shadow-2xl">
-            </a>
-        </section>
 
-<section class=" m-10 flex flex-col gap-28 items-center h-dvh rounded-2xl lg:bg-primary lg:shadow-2xl">
+<section class="flex flex-col gap-28 items-center h-dvh rounded-2xl lg:bg-primary lg:shadow-2xl">
 
-    <article class="shadow-2xl rounded-2xl overflow-clip">
+    <article class="fixed flex items-end justify-end bottom-25 right-5 text-4xl z-10 text-blk h-dvh w-dvw ">
+        <a href={{path('book_index')}}>
+            <img src={{asset('/images/long-arrow-down-left.svg')}} alt="retour" class="bg-primary rounded-full h-[130px] shadow-2xl">
+        </a>
+    </article>
+
+    <article class="m-10 shadow-2xl rounded-2xl overflow-clip">
         <img class="h-[33dvh]" src={{book.coverUrl}} alt={{book.title}}>
     </article>
 
